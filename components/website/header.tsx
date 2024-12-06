@@ -7,11 +7,19 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
+
+const navItems = [
+  { href: "#features", label: "Features" },
+  { href: "#how-it-works", label: "How it Works" },
+  { href: "#pricing", label: "Pricing" },
+];
 
 export const Header = () => {
   const { theme, setTheme } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { push } = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,12 +32,6 @@ export const Header = () => {
   const toggleTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark");
   };
-
-  const navItems = [
-    { href: "#features", label: "Features" },
-    { href: "#how-it-works", label: "How it Works" },
-    { href: "#pricing", label: "Pricing" },
-  ];
 
   return (
     <motion.header
@@ -85,7 +87,10 @@ export const Header = () => {
               </motion.div>
             </AnimatePresence>
           </Button>
-          <Button className="hidden md:inline-flex bg-gradient-to-r from-primary to-purple-600 text-white hover:opacity-90 transition-opacity">
+          <Button
+            className="hidden md:inline-flex bg-gradient-to-r from-primary to-purple-600 text-white hover:opacity-90 transition-opacity"
+            onClick={() => push("/sign-up")}
+          >
             Get Started
           </Button>
           <Button
@@ -118,7 +123,10 @@ export const Header = () => {
                   {item.label}
                 </a>
               ))}
-              <Button className="w-full bg-gradient-to-r from-primary to-purple-600 text-white hover:opacity-90 transition-opacity">
+              <Button
+                className="w-full bg-gradient-to-r from-primary to-purple-600 text-white hover:opacity-90 transition-opacity"
+                onClick={() => push("/sign-up")}
+              >
                 Get Started
               </Button>
             </nav>
