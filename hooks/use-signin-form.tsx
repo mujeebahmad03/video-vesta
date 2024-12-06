@@ -19,7 +19,8 @@ export const useSignInForm = (setIsLoading: (isLoading: boolean) => void) => {
         password,
       });
     } catch (error) {
-      console.log({ error });
+      console.error(JSON.stringify(error, null, 2));
+      throw error;
     } finally {
       setIsLoading(false);
     }

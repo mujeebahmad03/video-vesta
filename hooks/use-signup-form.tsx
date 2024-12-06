@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useSignUp } from "@clerk/nextjs";
 
 import { SignUpDto } from "@/schemas/auth";
@@ -27,8 +28,9 @@ export const useSignUpForm = (
 
       await signUp.prepareEmailAddressVerification({ strategy: "email_code" });
       setPendingVerification(true);
-    } catch (error) {
-      console.log({ error });
+    } catch (error: any) {
+      console.log({ error: error.message });
+      throw error;
     } finally {
       setIsLoading(false);
     }

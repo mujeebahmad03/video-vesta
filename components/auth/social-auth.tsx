@@ -6,7 +6,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
-import { ToastMessage } from "../ui/toast-message";
+import { ToastMessage } from "@/components/ui/toast-message";
 
 interface SocialSignInProps {
   type: "signUp" | "signIn";

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -68,14 +69,9 @@ export const useAuthForm = (type: AuthFormType) => {
           }
         />
       );
-    } catch (error) {
-      console.log({ error });
-      toast.error(
-        <ToastMessage
-          title="Error"
-          description="An error occurred. Please try again."
-        />
-      );
+    } catch (error: any) {
+      console.error(JSON.stringify(error, null, 2));
+      toast.error(<ToastMessage title="Error" description={error.message} />);
     } finally {
       setIsLoading(false);
     }
