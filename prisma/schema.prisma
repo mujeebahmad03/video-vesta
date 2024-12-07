@@ -51,10 +51,10 @@ model Subscription {
   id         String            @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   user       User?             @relation(fields: [userId], references: [id])
   userId     String?           @unique @db.Uuid
-  createdAt  DateTime          @default(now())
   plan       SUBSCRIPTION_PLAN @default(FREE)
-  updatedAt  DateTime          @default(now())
   customerId String?           @unique
+  createdAt  DateTime          @default(now())
+  updatedAt  DateTime          @default(now())
 }
 
 model MediaSettings {
@@ -73,20 +73,20 @@ model Workspace {
   name      String
   user      User?          @relation(fields: [userId], references: [id])
   userId    String?        @db.Uuid
-  createdAt DateTime       @default(now())
   folders   Folder[]
   videos    Video[]
   members   Member[]
   invite    Invite[]
+  createdAt DateTime       @default(now())
 }
 
 model Folder {
   id          String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   name        String     @default("Untitled Folder")
-  createdAt   DateTime   @default(now())
   workspace   Workspace? @relation(fields: [workSpaceId], references: [id])
   workSpaceId String?    @db.Uuid
   videos      Video[]
+  createdAt   DateTime   @default(now())
 }
 
 model Video {
@@ -94,7 +94,6 @@ model Video {
   title       String?    @default("Untitled Video")
   description String?    @default("No Description")
   source      String     @unique
-  createdAt   DateTime   @default(now())
   folder      Folder?    @relation(fields: [folderId], references: [id], onDelete: Cascade)
   folderId    String?    @db.Uuid
   user        User?      @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -105,16 +104,17 @@ model Video {
   views       Int        @default(0)
   summery     String?
   comment     Comment[]
+  createdAt   DateTime   @default(now())
 }
 
 model Member {
   id          String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   user        User?      @relation(fields: [userId], references: [id])
   userId      String?    @db.Uuid
-  createdAt   DateTime   @default(now())
   member      Boolean    @default(true)
   workspace   Workspace? @relation(fields: [workSpaceId], references: [id])
   workSpaceId String?    @db.Uuid
+  createdAt   DateTime   @default(now())
 }
 
 model Notification {
