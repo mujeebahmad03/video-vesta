@@ -1,13 +1,14 @@
 "use client";
 
+import { useUser } from "@clerk/nextjs";
 import { Sun, Moon, Menu } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 
 import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
 
 const navItems = [
   { href: "#features", label: "Features" },
@@ -19,7 +20,10 @@ export const Header = () => {
   const { theme, setTheme } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   const { push } = useRouter();
+
+  const { user, isSignedIn } = useUser();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,6 +35,14 @@ export const Header = () => {
 
   const toggleTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark");
+  };
+
+  const handleRouting = () => {
+    if (user) {
+      push("/dashboard");
+    } else {
+      push("/sign-in");
+    }
   };
 
   return (
@@ -89,9 +101,9 @@ export const Header = () => {
           </Button>
           <Button
             className="hidden md:inline-flex bg-gradient-to-r from-primary to-purple-600 text-white hover:opacity-90 transition-opacity"
-            onClick={() => push("/sign-up")}
+            onClick={handleRouting}
           >
-            Get Started
+            {isSignedIn ? "Dashboard" : "Get Started"}
           </Button>
           <Button
             variant="ghost"
@@ -125,9 +137,9 @@ export const Header = () => {
               ))}
               <Button
                 className="w-full bg-gradient-to-r from-primary to-purple-600 text-white hover:opacity-90 transition-opacity"
-                onClick={() => push("/sign-up")}
+                onClick={handleRouting}
               >
-                Get Started
+                {isSignedIn ? "Dashboard" : "Get Started"}
               </Button>
             </nav>
           </motion.div>
