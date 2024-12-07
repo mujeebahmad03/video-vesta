@@ -8,7 +8,7 @@ import {
   CustomFormField,
   EmailField,
   LoadingButton,
-} from "@/components/common";
+} from "@/components/global";
 import { SocialSignIn } from "./social-auth";
 import { PasswordField } from "./password-input";
 import { EmailVerificationForm } from "./email-verification";

@@ -1,4 +1,4 @@
-import { AnimatedSection } from "@/components/common";
+import { AnimatedSection } from "@/components/global";
 import {
   CTA,
   Features,

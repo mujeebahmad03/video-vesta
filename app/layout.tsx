@@ -2,8 +2,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 
-import { ThemeProvider } from "@/components/common";
-import { Toaster } from "@/components/ui/sonner";
+import { RootProviders } from "@/components/global";
 
 import "./globals.css";
 
@@ -23,21 +22,13 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <ClerkProvider>
+  return ClerkProvider({
+    children: (
       <html lang="en" suppressHydrationWarning className="scroll-smooth">
         <body className={`${roboto.className} bg-[#171717] antialiased`}>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            {children}
-            <Toaster richColors position="bottom-right" />
-          </ThemeProvider>
+          <RootProviders>{children}</RootProviders>
         </body>
       </html>
-    </ClerkProvider>
-  );
+    ),
+  });
 }

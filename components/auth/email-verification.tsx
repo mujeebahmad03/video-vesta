@@ -17,7 +17,7 @@ import {
   InputOTPSeparator,
   InputOTPSlot,
 } from "@/components/ui/input-otp";
-import { LoadingButton } from "../common/loading-button";
+import { LoadingButton } from "../global/loading-button";
 
 export const EmailVerificationForm = ({
   form,

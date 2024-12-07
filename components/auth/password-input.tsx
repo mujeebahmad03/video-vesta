@@ -6,7 +6,7 @@ import { useState } from "react";
 import { ControllerRenderProps, UseFormReturn } from "react-hook-form";
 
 import { Input } from "@/components/ui/input";
-import { CustomFormFieldWithChild } from "../common/custom-form-field";
+import { CustomFormFieldWithChild } from "../global/custom-form-field";
 
 export type PasswordInputProps = {
   field?: ControllerRenderProps<any, string>;

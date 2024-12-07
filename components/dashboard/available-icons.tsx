@@ -1,0 +1,31 @@
+import {
+  BriefcaseBusiness,
+  Code,
+  AudioWaveform,
+  BookOpen,
+  Bot,
+  Command,
+  Frame,
+  GalleryVerticalEnd,
+  Map,
+  PieChart,
+  Settings2,
+  SquareTerminal,
+  Monitor,
+} from "lucide-react";
+
+export const availableIcons = [
+  BriefcaseBusiness,
+  Code,
+  Settings2,
+  Monitor,
+  AudioWaveform,
+  BookOpen,
+  Bot,
+  Command,
+  Frame,
+  GalleryVerticalEnd,
+  Map,
+  PieChart,
+  SquareTerminal,
+];
