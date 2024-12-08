@@ -94,7 +94,7 @@ export const getAllUserVideos = async (workSpaceId: string) => {
   }
 };
 
-export const getWorkSpaces = async () => {
+export const getWorkspaces = async () => {
   try {
     const user = await currentUser();
 

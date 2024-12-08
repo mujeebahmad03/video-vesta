@@ -26,11 +26,11 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
+import Link from "next/link";
 
-export function NavUser() {
+export function NavUser({ workspaceId }: { workspaceId: string }) {
   const { isMobile } = useSidebar();
   const { user } = useUser();
-
 
   return (
     <SidebarMenu>
@@ -67,7 +67,9 @@ export function NavUser() {
                     src={user?.imageUrl}
                     alt={user?.fullName || ""}
                   />
-                  <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+                  <AvatarFallback className="rounded-lg">
+                    {user?.firstName?.charAt(0)}
+                  </AvatarFallback>
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
                   <span className="truncate font-semibold">
@@ -92,13 +94,17 @@ export function NavUser() {
                 <BadgeCheck />
                 Account
               </DropdownMenuItem>
-              <DropdownMenuItem>
-                <CreditCard />
-                Billing
+              <DropdownMenuItem asChild>
+                <Link href={`/dashboard/${workspaceId}/billing`}>
+                  <CreditCard />
+                  Billing
+                </Link>
               </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Bell />
-                Notifications
+              <DropdownMenuItem asChild>
+                <Link href={`/dashboard/${workspaceId}/notifications`}>
+                  <Bell />
+                  Notifications
+                </Link>
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />

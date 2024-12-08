@@ -2,7 +2,7 @@
 
 import { ChevronsUpDown } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 import {
@@ -21,14 +21,9 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 
-import { useIcon, useQueryData } from "@/hooks";
-import { QueryKeys } from "@/constants";
-import { getWorkSpaces } from "@/app/actions/workspace";
-import { WorkSpaceResponseDto } from "@/types/index.type";
+import { useGetWorkspace, useIcon } from "@/hooks";
 import { WORKSPACES } from "@/redux/slices/workspaces";
 import { WorkspaceIcon } from "./workspace-icon";
-
-// Extract workspace icon rendering to a separate component
 
 export function TeamSwitcher({
   activeWorkspaceId,
@@ -39,21 +34,10 @@ export function TeamSwitcher({
   const dispatch = useDispatch();
   const { push } = useRouter();
 
-  const { data, isFetched } = useQueryData(
-    [QueryKeys.USER_WORKSPACES],
-    getWorkSpaces
-  );
+  const { isFetched, userWorkspace, currentWorkspace } =
+    useGetWorkspace(activeWorkspaceId);
 
-  const { data: userWorkspace } = data as WorkSpaceResponseDto;
-
-  // Memoize icon mapping to prevent unnecessary re-renders
   const { iconMap } = useIcon(isFetched, userWorkspace);
-
-  // Memoize current workspace to improve performance
-  const currentWorkspace = useMemo(
-    () => userWorkspace?.workspace?.find((s) => s.id === activeWorkspaceId),
-    [userWorkspace?.workspace, activeWorkspaceId]
-  );
 
   // Handle workspace change
   const onChangeActiveWorkspace = (value: string) => {
