@@ -50,7 +50,7 @@ export function TeamSwitcher({
   // Memoize current workspace to improve performance
   const currentWorkspace = useMemo(
     () => userWorkspace.workspace?.find((s) => s.id === activeWorkspaceId),
-    [userWorkspace.workspace, activeWorkspaceId]
+    [userWorkspace?.workspace, activeWorkspaceId]
   );
 
   // Handle workspace change
