@@ -1,6 +1,8 @@
-import { useEffect, useMemo } from "react";
+"use client";
+
 import { ChevronsUpDown } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useEffect, useMemo } from "react";
 import { useDispatch } from "react-redux";
 
 import {
@@ -49,7 +51,7 @@ export function TeamSwitcher({
 
   // Memoize current workspace to improve performance
   const currentWorkspace = useMemo(
-    () => userWorkspace.workspace?.find((s) => s.id === activeWorkspaceId),
+    () => userWorkspace?.workspace?.find((s) => s.id === activeWorkspaceId),
     [userWorkspace?.workspace, activeWorkspaceId]
   );
 
