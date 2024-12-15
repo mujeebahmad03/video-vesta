@@ -23,7 +23,7 @@ import {
 
 import { onAuthenticatedUser } from "@/app/actions/user";
 import {
-  getWorkSpaces,
+  getWorkspaces,
   verifyAccessToWorkspace,
 } from "@/app/actions/workspace";
 import { QueryKeys } from "@/constants";
@@ -54,7 +54,7 @@ export default async function Layout({ params, children }: LayoutProps) {
 
   await query.prefetchQuery({
     queryKey: [QueryKeys.USER_WORKSPACES],
-    queryFn: () => getWorkSpaces(),
+    queryFn: () => getWorkspaces(),
   });
 
   return (

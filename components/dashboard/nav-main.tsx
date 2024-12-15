@@ -21,6 +21,8 @@ export function NavMain({ items }: { items: MENU_ITEMS_TYPE[] }) {
 
   const { data: count } = notifications as NotificationDto;
 
+  console.log({ count });
+
   return (
     <SidebarGroup>
       <SidebarGroupLabel>Menu</SidebarGroupLabel>
